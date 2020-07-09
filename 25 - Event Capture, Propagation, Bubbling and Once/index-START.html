@@ -42,7 +42,19 @@
 
 <button></button>
 <script>
+    const divs = document.querySelectorAll('div');
 
+    function logText(e) {
+        console.log(this.classList.value);
+        // e.stopPropagation(); // prevent budbbling
+    }
+
+    // bubbling - ripple all the way up. This will trigger clicks on child and parent divs and body and the browser, etc
+    //divs.forEach(div => div.addEventListener('click', logText));
+    divs.forEach(div => div. addEventListener('click', logText, {
+        capture: false, // this will capture clicks on the way down to the element vs bubbling
+        once. true // this will unbind and only run once
+    }));
 </script>
 </body>
 </html>
